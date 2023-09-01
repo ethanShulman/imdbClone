@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "fyjozhiy",
+    "password": "ZtXTNQ9Xzd_ys1BHlscnfDH7iQOhOzL1",
+    "database": "fyjozhiy",
+    "host": "fanny.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "fyjozhiy",
+    "password": "ZtXTNQ9Xzd_ys1BHlscnfDH7iQOhOzL1",
+    "database": "fyjozhiy",
+    "host": "fanny.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "fyjozhiy",
+    "password": "ZtXTNQ9Xzd_ys1BHlscnfDH7iQOhOzL1",
+    "database": "fyjozhiy",
+    "host": "fanny.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
