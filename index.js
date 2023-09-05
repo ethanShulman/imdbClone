@@ -17,6 +17,7 @@ app.get('/',(req, res) => {
     res.render('register')
 })
 
+
 app.post('/log_in', async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await user.findOne({ where: { email } })
