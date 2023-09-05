@@ -56,14 +56,21 @@ app.post('/register', async (req, res) => {
         });
     }
 
-    bcrypt.hash(password, saltRounds, (hash) => {
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        if (err) {
+            console.error('Error hashing password:', err);
+            return res.status(500).json({
+                error: 'Internal server error'
+            });
+        }
+        
         user.create({
                 name,
                 email,
                 password: hash 
             })
             .then(() => {
-                res.render('register');
+                res.render('log_in');
             })
     });
 });
