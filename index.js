@@ -70,7 +70,7 @@ app.post('/register', async (req, res) => {
                 password: hash 
             })
             .then(() => {
-                res.render('log_in');
+                res.render('register');
             })
     });
 });
