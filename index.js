@@ -13,10 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, '/public')))
 
-app.get('/',(req, res) => {
-    res.render('register')
+app.get('/log_in',(req, res) => {
+    res.render('log_in')
 })
-
 
 app.post('/log_in', async (req, res) => {
     const { email, password } = req.body;
@@ -27,17 +26,21 @@ app.post('/log_in', async (req, res) => {
             error: 'No user with that email was found.'
         })
     } 
-
+    
     const passwordMatch = await bcrypt.compare(password, existingUser.password);
-
+    
     if (!passwordMatch) {
         return res.status(400).json({
             error: 'Incorrect Password'
         });
     }
-
+    
     res.render('login')
 });
+
+app.get('/',(req, res) => {
+    res.render('register')
+})
 
 app.put('/', (req, res) => {
 
