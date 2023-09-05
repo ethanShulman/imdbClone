@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, '/public')))
 
+app.get('/',(req, res) => {
+    res.render('register')
+})
 
 app.post('/log_in', async (req, res) => {
     const { email, password } = req.body;
