@@ -56,7 +56,7 @@ app.post('/register', async (req, res) => {
         });
     }
 
-    bcrypt.hash(password, saltRounds, (err, hash) => {
+    bcrypt.hash(password, saltRounds, (hash) => {
         user.create({
                 name,
                 email,
