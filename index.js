@@ -41,10 +41,25 @@ const storedHashedPassword = '...'; // this is the password that is stored in th
 // });
 
 
-app.get('/', (req, res) => {
-    res.render('register')
-    // res.send("Hello World")
+app.post('/log_in', async (req, res) => {
+    const { email, password } = req.body;
+    const existingUser = await user.findOne({ where: { email } })
     
+    if (!existingUser){
+        res.status(400).json({
+            error: 'No user with that email was found.'
+        })
+    } 
+
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
+
+    if (!passwordMatch) {
+        return res.status(400).json({
+            error: 'Incorrect Password'
+        });
+    }
+
+    res.render('login')
 });
 
 app.put('/', (req, res) => {
@@ -54,13 +69,13 @@ app.put('/', (req, res) => {
 
 app.post('/register', async (req, res) => {
     const { name, email, password, passwordCheck } = req.body;
-    // const existingUser = await user.findOne({ where: { email } })
+    const existingUser = await user.findOne({ where: { email } })
 
-    // if(existingUser){
-        // res.status(400).json({
-            // error: 'Email is already in use'
-        // })
-    // }
+    if(existingUser){
+        res.status(400).json({
+            error: 'Email is already in use'
+        })
+    }
 
     if(req.body.password !== req.body.passwordCheck){
         res.status(400).json({
